@@ -4,7 +4,7 @@ import * as THREE from 'three';
 import './App.css';
 import './index.css';
 
-// === Salil Tiwari — Portfolio ===
+// === Aman Benjwal — Portfolio without Tailwind ===
 
 // ===== Helper Components =====
 const Section = ({ id, children, className = '' }) => {
@@ -136,7 +136,7 @@ const ProjectCard = ({ title, desc, tech = [], img, status, link }) => {
         {link && link !== "#" && (
           <div className="project-card-overlay">
             <a href={link} target="_blank" rel="noopener noreferrer" className="button button-primary">
-              View on GitHub
+              View Project
             </a>
           </div>
         )}
@@ -194,7 +194,7 @@ const ContactSection = ({ data }) => {
             </div>
           </div>
           <div className="contact-info-card">
-             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" ><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" ><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
             <div>
               <strong>Phone</strong>
               <br />
@@ -202,12 +202,12 @@ const ContactSection = ({ data }) => {
             </div>
           </div>
           <div className="contact-socials">
-             <a href={data.github} target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="GitHub">
+              <a href={data.github} target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="GitHub">
                 <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-             </a>
-             <a href={data.linkedin} target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="LinkedIn">
+              </a>
+              <a href={data.linkedin} target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="LinkedIn">
                 <svg fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-             </a>
+              </a>
           </div>
           <a href={data.resumeUrl} download className="button button-primary">
             Download Resume
@@ -262,7 +262,7 @@ export default function App() {
           minWidth: 200.0,
           scale: 1.0,
           scaleMobile: 1.0,
-          color: 0x181818, // Changed color to match new dark theme
+          color: 0x003566,
           shininess: 35.00,
           waveHeight: 18.00,
           waveSpeed: 0.85,
@@ -277,59 +277,60 @@ export default function App() {
   }, [vantaEffect]);
 
   const data = useMemo(() => ({
-      name: "Salil Tiwari", 
-      taglinePhrases: ["Machine Learning Developer", "Full-Stack Enthusiast", "Creative Problem Solver"],
-      intro: "I build intelligent, data-driven applications and interactive web experiences, from machine learning models to dynamic front-end designs.",
-      email: "Salilt1920@gmail.com", 
-      phone: "+91 7217543838", 
-      resumeUrl: "/Salil_Tiwari_Resume.pdf", 
-      linkedin: "https://www.linkedin.com/in/salil-tiwari-588a49275", // Updated
-      github: "https://github.com/Sanary707", // Updated
+      name: "Aman Benjwal",
+      taglinePhrases: ["Web Developer", "Graphic Designer", "AI Enthusiast"],
+      intro: "Creative and detail-oriented Computer Science student with strong skills in web and software development, brand design, and effective use of AI tools.",
+      email: "amanbenjwal2004@gmail.com",
+      phone: "+91 7351105153",
+      resumeUrl: "/Aman_Benjwal_Resume.pdf", 
+      linkedin: "https://www.linkedin.com/in/aman-benjwal/",
+      github: "https://github.com/amanbenjwal",
       skillsRadial: [
-        { label: "Python", value: 90 }, 
-        { label: "C++", value: 80 }, 
-        { label: "JavaScript", value: 75 }, 
-        { label: "MySQL", value: 70 }, 
+        { label: "JavaScript", value: 85 },
+        { label: "HTML/CSS", value: 90 },
+        { label: "C++", value: 80 },
+        { label: "SQL", value: 75 },
       ],
       skillsBars: [
-        { label: "React.js", value: 80 }, 
-        { label: "HTML & CSS", value: 85 }, 
-        { label: "Streamlit", value: 75 }, 
-        { label: "C Language", value: 65 }, 
-        { label: "Bootstrap", value: 60 }, 
+        { label: "React", value: 70 },
+        { label: "Graphic Design", value: 85 },
+        { label: "Figma", value: 80 },
+        { label: "MySQL", value: 75 },
+        { label: "Git", value: 80 },
+        { label: "AI Tools", value: 75 },
       ],
       projects: [
         {
-          title: "E-Commerce Website", 
-          desc: "An interactive frontend web app using React.js to showcase things, featuring attractive UI and dynamic pricing.", 
-          tech: ["React.js", "JavaScript", "HTML", "CSS"], 
-          img: "https://picsum.photos/seed/project2/600/400",
-          status: "Completed",
-          link: "https://github.com/Sanary707" // Updated link
+            title: "Employee Management System",
+            desc: "Developed a system to manage employee records with features to mark, update, and view data, improving accuracy and efficiency in organizational workflows.",
+            tech: ["JavaScript", "HTML", "CSS", "SQL"],
+            img: "https://picsum.photos/seed/employee/600/400",
+            status: "Completed",
+            link: "#"
         },
         {
-          title: "Credit Card Fraud Detection", 
-          desc: "An intelligent Streamlit web app that leverages ML to identify potentially fraudulent credit card transactions in real-time.", 
-          tech: ["Python", "Machine Learning", "Streamlit"], 
-          img: "https://picsum.photos/seed/project3/600/400",
-          status: "Completed",
-          link: "https://github.com/Sanary707" // Updated link
+            title: "Text-to-Audio and Audio-to-Text Converter",
+            desc: "Built a web tool using HTML, CSS, and JavaScript with speech APIs for real-time text-audio conversion, highlighting front-end and accessibility skills.",
+            tech: ["JavaScript", "HTML", "CSS", "Web APIs"],
+            img: "https://picsum.photos/seed/audiotext/600/400",
+            status: "Completed",
+            link: "#"
         },
         {
-          title: "Multiple Disease Prediction", 
-          desc: "An interactive Streamlit web app in Python that predicts Diabetes, Parkinson's, or Heart Disease from medical parameters.", 
-          tech: ["Python", "Machine Learning", "Streamlit"], 
-          img: "https://picsum.photos/seed/project4/600/400",
+          title: "ML-Based Attendance System",
+          desc: "Built an attendance system using machine learning and camera input to recognize faces and auto-record attendance in Excel, enhancing accuracy and minimizing manual work.",
+          tech: ["Python", "Machine Learning", "OpenCV", "Excel"],
+          img: "https://picsum.photos/seed/attendance/600/400",
           status: "Completed",
-          link: "https://github.com/Sanary707" // Updated link
+          link: "#"
         },
       ],
       journey: [
-        { year: "2020", text: "Completed C.B.S.E. with 88.20%" }, 
-        { year: "2022", text: "Started B.TECH in Computer Science at Graphic Era Hill University" }, 
-        { year: "2023", text: "Began exploring Machine Learning with the 'Multiple Disease Prediction' project" }, 
-        { year: "2024", text: "Deepened ML skills with a 'Credit Card Fraud Detection' application" }, 
-        { year: "2025", text: "Expanded into web dev with a React.js site, explored automation, and achieved AWS Certification." }, 
+        { year: "2020", text: "Completed CBSE schooling with focus on computer science fundamentals." },
+        { year: "2022", text: "Started BTech in Computer Science at Graphic Era Hill University, Dehradun." },
+        { year: "2023", text: "Developed Employee Management System and Text-to-Audio Converter projects." },
+        { year: "2024", text: "Worked on ML-Based Attendance System and improved skills in AI tools." },
+        { year: "2025", text: "Completed internship on AGNIRVA Space Program by AICTE and obtained Google Cloud certification." },
       ],
     }), []);
 
@@ -381,7 +382,7 @@ export default function App() {
       <main>
         <Section id="hero" className="hero-section">
           <div className="hero-content">
-            <Badge>Machine Learning & Web Developer</Badge>
+            <Badge>Web Developer & Graphic Designer</Badge>
             <h1 className="hero-title">Hi, I'm <span className="text-gradient">{data.name.split(' ')[0]}</span></h1>
             <div className="hero-typewriter">
               <span className="text-gradient">{typed}</span>
@@ -398,7 +399,7 @@ export default function App() {
         <Section id="skills">
           <div className="section-header">
             <h2 className="section-title">Skills & Expertise</h2>
-            <p className="section-subtitle">A diverse skill set focused on machine learning, data science, and web development.</p>
+            <p className="section-subtitle">A diverse skill set focused on web development, graphic design, and AI tools.</p>
           </div>
           <div className="skills-grid">
             <div className="skills-column">
@@ -419,7 +420,7 @@ export default function App() {
         <Section id="projects">
           <div className="section-header">
             <h2 className="section-title">Featured Projects</h2>
-            <p className="section-subtitle">A collection of my work in machine learning and software development.</p>
+            <p className="section-subtitle">A collection of my most impactful work in web development and AI.</p>
           </div>
           <div className="projects-grid">
             {data.projects.map(p => <ProjectCard key={p.title} {...p} />)}
@@ -429,7 +430,7 @@ export default function App() {
         <Section id="journey">
           <div className="section-header">
             <h2 className="section-title">My Journey</h2>
-            <p className="section-subtitle">The timeline of my development as a programmer and ML enthusiast.</p>
+            <p className="section-subtitle">The timeline of my development as a web developer and designer.</p>
           </div>
           <div className="timeline">
             {data.journey.map((j, i) => (
@@ -443,7 +444,7 @@ export default function App() {
 
       <footer className="footer">
         <div className="footer-container">
-          <p>© {new Date().getFullYear()} {data.name}. Built with ❤️ and caffeine.</p>
+          <p>© {new Date().getFullYear()} {data.name}. Built with ❤️ and creativity.</p>
           <div className="footer-links">
             <a href={data.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
             <a href={data.github} target="_blank" rel="noopener noreferrer">GitHub</a>
