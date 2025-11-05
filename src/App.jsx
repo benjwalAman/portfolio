@@ -275,16 +275,16 @@ useEffect(() => {
       backgroundColor: 0x0f0022,
     });
 
-    // 💧 Add ripple effect after VANTA loads
+    // 💧 Load ripple effect dynamically
     const script = document.createElement("script");
     script.src = "/js/jquery.ripples-min.js";
     script.onload = () => {
       try {
         $(vantaRef.current).ripples({
           resolution: 512,
-          perturbance: 0.04,   // How wavy the ripples look
-          dropRadius: 20,      // Ripple size
-          interactive: true,   // Enable hover interaction
+          perturbance: 0.04,
+          dropRadius: 20,
+          interactive: true,
         });
       } catch (e) {
         console.error("Ripples init failed", e);
@@ -293,7 +293,6 @@ useEffect(() => {
     document.body.appendChild(script);
   })();
 
-  // ✅ Cleanup function (runs when component unmounts)
   return () => {
     if (effect) effect.destroy();
     try {
@@ -301,6 +300,7 @@ useEffect(() => {
     } catch {}
   };
 }, []);
+
 
 
 
