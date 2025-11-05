@@ -373,120 +373,87 @@ useEffect(() => {
     return () => sections.forEach(s => observer.unobserve(s));
   }, []);
 
-  return (
-    // The ref is now attached to the main div, which acts as the Vanta container
-    <div className="app-container selection-bg relative">
-  {/* 🌊 Ocean + Ripple Background */}
-  <div
-    ref={vantaRef}
-    id="vanta-bg"
-    className="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden"
-  />
+return (
+  <div className="app-container selection-bg relative" ref={vantaRef}>
+    {/* 🌊 Ocean + Ripple Background */}
+    <div
+      id="vanta-bg"
+      className="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden"
+    />
 
-  {/* 🌟 Main Content */}
-  <nav className="nav"> ... </nav>
-  <main> ... </main>
-  <footer className="footer"> ... </footer>
-</div>
-
-      <nav className="nav">
-        <div className="nav-container">
-          <a href="#hero" className="nav-brand text-gradient">{data.name}</a>
-          <div className="nav-links">
-            {navLinks.map(item => (
-              <a key={item} href={`#${item.toLowerCase()}`} className={activeSection === item.toLowerCase() ? 'active' : ''}>
-                {item}
-              </a>
-            ))}
-          </div>
-          <button className="mobile-menu-button" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Toggle Menu">
-            <svg stroke="currentColor" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-          </button>
+    {/* 🌟 Main Content */}
+    <nav className="nav">
+      <div className="nav-container">
+        <a href="#hero" className="nav-brand text-gradient">{data.name}</a>
+        <div className="nav-links">
+          {navLinks.map(item => (
+            <a
+              key={item}
+              href={`#${item.toLowerCase()}`}
+              className={activeSection === item.toLowerCase() ? 'active' : ''}
+            >
+              {item}
+            </a>
+          ))}
         </div>
-        {mobileMenuOpen && (
-          <div className="mobile-menu">
-            {navLinks.map(item => (
-              <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setMobileMenuOpen(false)}>
-                {item}
-              </a>
-            ))}
-          </div>
-        )}
-      </nav>
+        <button
+          className="mobile-menu-button"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle Menu"
+        >
+          <svg stroke="currentColor" fill="none" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+      {mobileMenuOpen && (
+        <div className="mobile-menu">
+          {navLinks.map(item => (
+            <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setMobileMenuOpen(false)}>
+              {item}
+            </a>
+          ))}
+        </div>
+      )}
+    </nav>
 
-      <main>
-        <Section id="hero" className="hero-section">
-          <div className="hero-content">
-            <Badge>Web Developer & Graphic Designer</Badge>
-            <h1 className="hero-title">Hi, I'm <span className="text-gradient">{data.name.split(' ')[0]}</span></h1>
-            <div className="hero-typewriter">
-              <span className="text-gradient">{typed}</span>
-              <span className="cursor">|</span>
-            </div>
-            <p className="hero-intro">{data.intro}</p>
-            <div className="hero-buttons">
-              <a href={`mailto:${data.email}`} className="button button-primary">Email Me</a>
-              <a href={data.linkedin} target="_blank" rel="noopener noreferrer" className="button button-secondary">LinkedIn</a>
-            </div>
+    <main>
+      {/* All your Section components */}
+      <Section id="hero" className="hero-section">
+        <div className="hero-content">
+          <Badge>Web Developer & Graphic Designer</Badge>
+          <h1 className="hero-title">
+            Hi, I'm <span className="text-gradient">{data.name.split(' ')[0]}</span>
+          </h1>
+          <div className="hero-typewriter">
+            <span className="text-gradient">{typed}</span>
+            <span className="cursor">|</span>
           </div>
-        </Section>
-
-        <Section id="skills">
-          <div className="section-header">
-            <h2 className="section-title">Skills & Expertise</h2>
-            <p className="section-subtitle">A diverse skill set focused on web development, graphic design, and AI tools.</p>
-          </div>
-          <div className="skills-grid">
-            <div className="skills-column">
-              <h3>Core Technologies</h3>
-              <div className="radial-skills-container">
-                {data.skillsRadial.map(s => <RadialSkill key={s.label} {...s} />)}
-              </div>
-            </div>
-            <div className="skills-column">
-              <h3>Development Skills</h3>
-              <div className="bar-skills-container">
-                {data.skillsBars.map(s => <SkillBar key={s.label} {...s} />)}
-              </div>
-            </div>
-          </div>
-        </Section>
-
-        <Section id="projects">
-          <div className="section-header">
-            <h2 className="section-title">Featured Projects</h2>
-            <p className="section-subtitle">A collection of my most impactful work in web development and AI.</p>
-          </div>
-          <div className="projects-grid">
-            {data.projects.map(p => <ProjectCard key={p.title} {...p} />)}
-          </div>
-        </Section>
-        
-        <Section id="journey">
-          <div className="section-header">
-            <h2 className="section-title">My Journey</h2>
-            <p className="section-subtitle">The timeline of my development as a web developer and designer.</p>
-          </div>
-          <div className="timeline">
-            {data.journey.map((j, i) => (
-              <TimelineItem key={j.year} {...j} isLast={i === data.journey.length - 1} />
-            ))}
-          </div>
-        </Section>
-
-        <ContactSection data={data} />
-      </main>
-
-      <footer className="footer">
-        <div className="footer-container">
-          <p>© {new Date().getFullYear()} {data.name}. Built with ❤️ and creativity.</p>
-          <div className="footer-links">
-            <a href={data.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href={data.github} target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a href={`mailto:${data.email}`}>Email</a>
+          <p className="hero-intro">{data.intro}</p>
+          <div className="hero-buttons">
+            <a href={`mailto:${data.email}`} className="button button-primary">Email Me</a>
+            <a href={data.linkedin} target="_blank" rel="noopener noreferrer" className="button button-secondary">LinkedIn</a>
           </div>
         </div>
-      </footer>
-    </div>
-  );
-}
+      </Section>
+
+      {/* Other sections */}
+      <Section id="skills"> ... </Section>
+      <Section id="projects"> ... </Section>
+      <Section id="journey"> ... </Section>
+      <ContactSection data={data} />
+    </main>
+
+    <footer className="footer">
+      <div className="footer-container">
+        <p>© {new Date().getFullYear()} {data.name}. Built with ❤️ and creativity.</p>
+        <div className="footer-links">
+          <a href={data.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href={data.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href={`mailto:${data.email}`}>Email</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+);
+
