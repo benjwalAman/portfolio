@@ -252,22 +252,23 @@ export default function App() {
   useEffect(() => {
     if (!vantaEffect) {
       setVantaEffect(
-        WAVES({
-          el: vantaRef.current,
-          THREE: THREE,
-          mouseControls: true,
-          touchControls: true,
-          gyroControls: false,
-          minHeight: 200.0,
-          minWidth: 200.0,
-          scale: 1.0,
-          scaleMobile: 1.0,
-          color: 0x003566,
-          shininess: 35.00,
-          waveHeight: 18.00,
-          waveSpeed: 0.85,
-          zoom: 0.8,
-        })
+WAVES({
+  el: vantaRef.current,
+  THREE: THREE,
+  mouseControls: true,
+  touchControls: true,
+  gyroControls: false,
+  minHeight: 200.0,
+  minWidth: 200.0,
+  scale: 1.0,
+  scaleMobile: 1.0,
+  color: 0x6C63FF,  // 💜 Purple background
+  shininess: 35.00,
+  waveHeight: 18.00,
+  waveSpeed: 0.85,
+  zoom: 0.8,
+})
+
       );
     }
     // Cleanup function to destroy the effect on component unmount
