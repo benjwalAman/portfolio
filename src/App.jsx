@@ -1,5 +1,7 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import WAVES from 'vanta/dist/vanta.waves.min';
+//import React, { useEffect, useMemo, useRef, useState } from "react";
+//import WAVES from 'vanta/dist/vanta.waves.min';
+import { useEffect, useRef } from 'react';
+import OCEAN from 'vanta/dist/vanta.ocean.min.js';
 import * as THREE from 'three';
 import './App.css';
 import './index.css';
@@ -249,8 +251,8 @@ export default function App() {
   const vantaRef = useRef(null);
 
   // VANTA.JS BACKGROUND EFFECT HOOK
- useEffect(() => {
-  const effect = WAVES({
+useEffect(() => {
+  const effect = OCEAN({
     el: vantaRef.current,
     THREE: THREE,
     mouseControls: true,
@@ -260,18 +262,19 @@ export default function App() {
     minWidth: 200.0,
     scale: 1.0,
     scaleMobile: 1.0,
-    color: 0x8e44ad,           // 💜 Main wave color (purple tone)
-    shininess: 60.0,           // Increase shininess for reflective waves
-    waveHeight: 25.0,          // Slightly higher waves for effect
-    waveSpeed: 0.85,           // Smooth animation speed
-    zoom: 0.8,
-    backgroundColor: 0x2b0033, // Deep violet background behind waves
+    color: 0x6c63ff,           // 💜 Purple ocean color
+    shininess: 60.0,
+    waveHeight: 20.0,
+    waveSpeed: 1.0,
+    zoom: 0.75,
+    backgroundColor: 0x0f0022, // Deep purple ocean background
   });
 
   return () => {
     if (effect) effect.destroy();
   };
 }, []);
+
 
 
   const data = useMemo(() => ({
