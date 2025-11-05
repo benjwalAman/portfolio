@@ -444,7 +444,7 @@ return (
       <ContactSection data={data} />
     </main>
 
-    <footer className="footer">
+       <footer className="footer">
       <div className="footer-container">
         <p>© {new Date().getFullYear()} {data.name}. Built with ❤️ and creativity.</p>
         <div className="footer-links">
@@ -456,4 +456,5 @@ return (
     </footer>
   </div>
 );
+}
 
