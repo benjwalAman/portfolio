@@ -249,33 +249,30 @@ export default function App() {
   const vantaRef = useRef(null);
 
   // VANTA.JS BACKGROUND EFFECT HOOK
-  useEffect(() => {
-    if (!vantaEffect) {
-      setVantaEffect(
-WAVES({
-  el: vantaRef.current,
-  THREE: THREE,
-  mouseControls: true,
-  touchControls: true,
-  gyroControls: false,
-  minHeight: 200.0,
-  minWidth: 200.0,
-  scale: 1.0,
-  scaleMobile: 1.0,
-  color: 0x6C63FF,  // 💜 Purple background
-  shininess: 35.00,
-  waveHeight: 18.00,
-  waveSpeed: 0.85,
-  zoom: 0.8,
-})
+ useEffect(() => {
+  const effect = WAVES({
+    el: vantaRef.current,
+    THREE: THREE,
+    mouseControls: true,
+    touchControls: true,
+    gyroControls: false,
+    minHeight: 200.0,
+    minWidth: 200.0,
+    scale: 1.0,
+    scaleMobile: 1.0,
+    color: 0x8e44ad,           // 💜 Main wave color (purple tone)
+    shininess: 60.0,           // Increase shininess for reflective waves
+    waveHeight: 25.0,          // Slightly higher waves for effect
+    waveSpeed: 0.85,           // Smooth animation speed
+    zoom: 0.8,
+    backgroundColor: 0x2b0033, // Deep violet background behind waves
+  });
 
-      );
-    }
-    // Cleanup function to destroy the effect on component unmount
-    return () => {
-      if (vantaEffect) vantaEffect.destroy();
-    };
-  }, [vantaEffect]);
+  return () => {
+    if (effect) effect.destroy();
+  };
+}, []);
+
 
   const data = useMemo(() => ({
       name: "Aman Benjwal",
