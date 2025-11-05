@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-//import WAVES from 'vanta/dist/vanta.waves.min';
-import { useEffect, useRef } from 'react';
-//import OCEAN from 'vanta/dist/vanta.ocean.min.js';
+// import WAVES from 'vanta/dist/vanta.waves.min';
+// import OCEAN from 'vanta/dist/vanta.ocean.min.js';
 import * as THREE from 'three';
 import $ from "jquery";
 import './App.css';
 import './index.css';
+
 
 // === Aman Benjwal — Portfolio without Tailwind ===
 
@@ -253,9 +253,11 @@ export default function App() {
 
   // VANTA.JS BACKGROUND EFFECT HOOK
 useEffect(() => {
+  let effect = null;
+
   (async () => {
     const VANTA = await import('vanta/dist/vanta.ocean.min.js');
-    const effect = VANTA.default({
+    effect = VANTA.default({
       el: vantaRef.current,
       THREE: THREE,
       mouseControls: true,
@@ -272,27 +274,26 @@ useEffect(() => {
       zoom: 0.75,
       backgroundColor: 0x0f0022,
     });
+
+    // 💧 Add ripple effect after VANTA loads
+    const script = document.createElement("script");
+    script.src = "/js/jquery.ripples-min.js";
+    script.onload = () => {
+      try {
+        $(vantaRef.current).ripples({
+          resolution: 512,
+          perturbance: 0.04,   // How wavy the ripples look
+          dropRadius: 20,      // Ripple size
+          interactive: true,   // Enable hover interaction
+        });
+      } catch (e) {
+        console.error("Ripples init failed", e);
+      }
+    };
+    document.body.appendChild(script);
   })();
-}, []);
 
-
-  // 💧 Add ripple effect
-  const script = document.createElement("script");
-  script.src = "/js/jquery.ripples-min.js";
-  script.onload = () => {
-    try {
-      $(vantaRef.current).ripples({
-        resolution: 512,
-        perturbance: 0.04,   // How wavy the ripples look
-        dropRadius: 20,      // Ripple size
-        interactive: true,   // Enable hover interaction
-      });
-    } catch (e) {
-      console.error("Ripples init failed", e);
-    }
-  };
-  document.body.appendChild(script);
-
+  // ✅ Cleanup function (runs when component unmounts)
   return () => {
     if (effect) effect.destroy();
     try {
@@ -300,6 +301,7 @@ useEffect(() => {
     } catch {}
   };
 }, []);
+
 
 
 
