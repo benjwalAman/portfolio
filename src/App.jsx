@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 //import WAVES from 'vanta/dist/vanta.waves.min';
 import { useEffect, useRef } from 'react';
-import OCEAN from 'vanta/dist/vanta.ocean.min.js';
+//import OCEAN from 'vanta/dist/vanta.ocean.min.js';
 import * as THREE from 'three';
 import $ from "jquery";
 import './App.css';
@@ -253,23 +253,28 @@ export default function App() {
 
   // VANTA.JS BACKGROUND EFFECT HOOK
 useEffect(() => {
-  const effect = OCEAN({
-    el: vantaRef.current,
-    THREE: THREE,
-    mouseControls: true,
-    touchControls: true,
-    gyroControls: false,
-    minHeight: 200.0,
-    minWidth: 200.0,
-    scale: 1.0,
-    scaleMobile: 1.0,
-    color: 0x6c63ff,
-    shininess: 60.0,
-    waveHeight: 20.0,
-    waveSpeed: 1.0,
-    zoom: 0.75,
-    backgroundColor: 0x0f0022,
-  });
+  (async () => {
+    const VANTA = await import('vanta/dist/vanta.ocean.min.js');
+    const effect = VANTA.default({
+      el: vantaRef.current,
+      THREE: THREE,
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.0,
+      minWidth: 200.0,
+      scale: 1.0,
+      scaleMobile: 1.0,
+      color: 0x6c63ff,
+      shininess: 60.0,
+      waveHeight: 20.0,
+      waveSpeed: 1.0,
+      zoom: 0.75,
+      backgroundColor: 0x0f0022,
+    });
+  })();
+}, []);
+
 
   // 💧 Add ripple effect
   const script = document.createElement("script");
