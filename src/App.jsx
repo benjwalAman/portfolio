@@ -3,6 +3,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useEffect, useRef } from 'react';
 import OCEAN from 'vanta/dist/vanta.ocean.min.js';
 import * as THREE from 'three';
+import $ from "jquery";
 import './App.css';
 import './index.css';
 
@@ -262,16 +263,36 @@ useEffect(() => {
     minWidth: 200.0,
     scale: 1.0,
     scaleMobile: 1.0,
-    color: 0x6c63ff,           // 💜 Purple ocean color
+    color: 0x6c63ff,
     shininess: 60.0,
     waveHeight: 20.0,
     waveSpeed: 1.0,
     zoom: 0.75,
-    backgroundColor: 0x0f0022, // Deep purple ocean background
+    backgroundColor: 0x0f0022,
   });
+
+  // 💧 Add ripple effect
+  const script = document.createElement("script");
+  script.src = "/js/jquery.ripples-min.js";
+  script.onload = () => {
+    try {
+      $(vantaRef.current).ripples({
+        resolution: 512,
+        perturbance: 0.04,   // How wavy the ripples look
+        dropRadius: 20,      // Ripple size
+        interactive: true,   // Enable hover interaction
+      });
+    } catch (e) {
+      console.error("Ripples init failed", e);
+    }
+  };
+  document.body.appendChild(script);
 
   return () => {
     if (effect) effect.destroy();
+    try {
+      $(vantaRef.current).ripples("destroy");
+    } catch {}
   };
 }, []);
 
@@ -354,7 +375,20 @@ useEffect(() => {
 
   return (
     // The ref is now attached to the main div, which acts as the Vanta container
-    <div ref={vantaRef} className="app-container selection-bg">
+    <div className="app-container selection-bg relative">
+  {/* 🌊 Ocean + Ripple Background */}
+  <div
+    ref={vantaRef}
+    id="vanta-bg"
+    className="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden"
+  />
+
+  {/* 🌟 Main Content */}
+  <nav className="nav"> ... </nav>
+  <main> ... </main>
+  <footer className="footer"> ... </footer>
+</div>
+
       <nav className="nav">
         <div className="nav-container">
           <a href="#hero" className="nav-brand text-gradient">{data.name}</a>
