@@ -291,7 +291,7 @@ useEffect(() => {
       }
     };
     document.body.appendChild(script);
-  })();
+  })(); // ✅ only one closure here
 
   return () => {
     if (effect) effect.destroy();
@@ -300,6 +300,7 @@ useEffect(() => {
     } catch {}
   };
 }, []);
+
 
 
 
