@@ -1,10 +1,10 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-// import WAVES from 'vanta/dist/vanta.waves.min';
-// import OCEAN from 'vanta/dist/vanta.ocean.min.js';
-import * as THREE from 'three';
 import $ from "jquery";
 import './App.css';
 import './index.css';
+import * as THREE from "three";
+import CLOUDS from "vanta/src/vanta.clouds";
+
 
 
 // === Aman Benjwal — Portfolio without Tailwind ===
@@ -247,64 +247,33 @@ const ContactSection = ({ data }) => {
 
 
 // ================== MAIN APP ==================
+
 export default function App() {
-  const [vantaEffect, setVantaEffect] = useState(null);
   const vantaRef = useRef(null);
 
-  // VANTA.JS BACKGROUND EFFECT HOOK
-useEffect(() => {
-  let effect = null;
+  useEffect(() => {
+    if (!vantaRef.current) return;
 
-  (async () => {
-    const VANTA = await import('vanta/dist/vanta.ocean.min.js');
-    effect = VANTA.default({
+    const effect = CLOUDS({
       el: vantaRef.current,
-      THREE: THREE,
+      THREE,
       mouseControls: true,
       touchControls: true,
       gyroControls: false,
-      minHeight: 200.0,
-      minWidth: 200.0,
-      scale: 1.0,
-      scaleMobile: 1.0,
-      color: 0x6c63ff,
-      shininess: 60.0,
-      waveHeight: 20.0,
-      waveSpeed: 1.0,
-      zoom: 0.75,
-      backgroundColor: 0x0f0022,
+      minHeight: 200,
+      minWidth: 200,
     });
 
-    // 💧 Load ripple effect dynamically
-    const script = document.createElement("script");
-    script.src = "/js/jquery.ripples-min.js";
-    script.onload = () => {
-      try {
-        $(vantaRef.current).ripples({
-          resolution: 512,
-          perturbance: 0.04,
-          dropRadius: 20,
-          interactive: true,
-        });
-      } catch (e) {
-        console.error("Ripples init failed", e);
-      }
+    return () => {
+      effect.destroy();
     };
-    document.body.appendChild(script);
-  })(); // ✅ only one closure here
+  }, []);
 
-  return () => {
-    if (effect) effect.destroy();
-    try {
-      $(vantaRef.current).ripples("destroy");
-    } catch {}
-  };
-}, []);
-
-
-
-
-
+  return (
+    <div ref={vantaRef} style={{ minHeight: "100vh" }}>
+      {/* your content */}
+    </div>
+  );
 
   const data = useMemo(() => ({
       name: "Aman Benjwal",
@@ -465,4 +434,3 @@ return (
   </div>
 );
 }
-
