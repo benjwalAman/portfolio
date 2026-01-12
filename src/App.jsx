@@ -247,7 +247,6 @@ const ContactSection = ({ data }) => {
 
 
 // ================== MAIN APP ==================
-
 export default function App() {
   const vantaRef = useRef(null);
 
@@ -264,17 +263,9 @@ export default function App() {
       minWidth: 200,
     });
 
-    return () => {
-      effect.destroy();
-    };
+    return () => effect.destroy();
   }, []);
-
-  return (
-    <div ref={vantaRef} style={{ minHeight: "100vh" }}>
-      {/* your content */}
-    </div>
-  );
-
+  
   const data = useMemo(() => ({
       name: "Aman Benjwal",
       taglinePhrases: ["Web Developer", "Graphic Designer", "AI Enthusiast"],
