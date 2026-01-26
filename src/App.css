@@ -786,22 +786,32 @@ body {
   }
 }
 
-/* Vanta background wrapper */
-.vanta-bg {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
+.hero-section {
+  position: relative;
   height: 100vh;
-  z-index: -1;
-  pointer-events: none;
+  overflow: hidden;
 }
 
-/* Make sure ALL content stays above Vanta */
-.app-container,
-nav,
-main,
-section,
-footer {
+.hero-section canvas {
+  position: absolute !important;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.section {
   position: relative;
   z-index: 1;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  z-index: 50;
 }
