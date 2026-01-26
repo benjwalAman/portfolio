@@ -251,20 +251,27 @@ export default function App() {
   const vantaRef = useRef(null);
 
   useEffect(() => {
-    if (!vantaRef.current) return;
+  if (!vantaRef.current) return;
 
-    const effect = CLOUDS({
-      el: vantaRef.current,
-      THREE,
-      mouseControls: true,
-      touchControls: true,
-      gyroControls: false,
-      minHeight: 200,
-      minWidth: 200,
-    });
+  // Optional: disable on mobile for performance
+  if (window.innerWidth < 768) return;
 
-    return () => effect.destroy();
-  }, []);
+  let vantaEffect = CLOUDS({
+    el: vantaRef.current,
+    THREE,
+    mouseControls: true,
+    touchControls: true,
+    gyroControls: false,
+    minHeight: 200,
+    minWidth: 200,
+  });
+
+  return () => {
+    if (vantaEffect) {
+      vantaEffect.destroy();
+    }
+  };
+}, []);
   
   const data = useMemo(() => ({
       name: "Aman Benjwal",
@@ -342,11 +349,13 @@ export default function App() {
   }, []);
 
 return (
-  <div className="app-container selection-bg relative" ref={vantaRef}>
-    {/* 🌊 Ocean + Ripple Background */}
+  <div className="app-container selection-bg relative">
+    
+    {/* 🌊 Vanta Background (ONLY background, nothing else) */}
     <div
       id="vanta-bg"
-      className="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden"
+      ref={vantaRef}
+      className="vanta-bg"
     />
 
     {/* 🌟 Main Content */}
@@ -370,14 +379,21 @@ return (
           aria-label="Toggle Menu"
         >
           <svg stroke="currentColor" fill="none" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7"></path>
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+              d="M4 6h16M4 12h16m-7 6h7"
+            />
           </svg>
         </button>
       </div>
+
       {mobileMenuOpen && (
         <div className="mobile-menu">
           {navLinks.map(item => (
-            <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setMobileMenuOpen(false)}>
+            <a
+              key={item}
+              href={`#${item.toLowerCase()}`}
+              onClick={() => setMobileMenuOpen(false)}
+            >
               {item}
             </a>
           ))}
@@ -386,33 +402,45 @@ return (
     </nav>
 
     <main>
-      {/* All your Section components */}
       <Section id="hero" className="hero-section">
         <div className="hero-content">
           <Badge>Web Developer & Graphic Designer</Badge>
+
           <h1 className="hero-title">
-            Hi, I'm <span className="text-gradient">{data.name.split(' ')[0]}</span>
+            Hi, I'm <span className="text-gradient">{data.name.split(" ")[0]}</span>
           </h1>
+
           <div className="hero-typewriter">
             <span className="text-gradient">{typed}</span>
             <span className="cursor">|</span>
           </div>
+
           <p className="hero-intro">{data.intro}</p>
+
           <div className="hero-buttons">
-            <a href={`mailto:${data.email}`} className="button button-primary">Email Me</a>
-            <a href={data.linkedin} target="_blank" rel="noopener noreferrer" className="button button-secondary">LinkedIn</a>
+            <a href={`mailto:${data.email}`} className="button button-primary">
+              Email Me
+            </a>
+            <a
+              href={data.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="button button-secondary"
+            >
+              LinkedIn
+            </a>
           </div>
         </div>
       </Section>
 
-      {/* Other sections */}
       <Section id="skills"> ... </Section>
       <Section id="projects"> ... </Section>
       <Section id="journey"> ... </Section>
+
       <ContactSection data={data} />
     </main>
 
-       <footer className="footer">
+    <footer className="footer">
       <div className="footer-container">
         <p>© {new Date().getFullYear()} {data.name}. Built with ❤️ and creativity.</p>
         <div className="footer-links">
@@ -422,6 +450,7 @@ return (
         </div>
       </div>
     </footer>
+
   </div>
 );
 }
