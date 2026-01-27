@@ -156,13 +156,13 @@ body {
   margin: 0 auto;
   padding: 6rem 1rem;
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+ position: relative;
+  z-index: 1;
 }
 
 .section.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 .section-title {
@@ -182,6 +182,15 @@ body {
 .section-header {
   text-align: center;
   margin-bottom: 4rem;
+}
+.section.animate {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.section.animate.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
 /* =================================
@@ -787,11 +796,6 @@ body {
   .hero-buttons {
     justify-content: flex-start;
   }
-}
-
-.hero-section {
-  position: relative;
-  min-height: 100vh;
 }
 
 .vanta-bg {
