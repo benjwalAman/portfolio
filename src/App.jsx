@@ -250,26 +250,28 @@ const ContactSection = ({ data }) => {
 export default function App() {
   const vantaRef = useRef(null);
 
-  useEffect(() => {
+ useEffect(() => {
   if (!vantaRef.current) return;
 
-  // Optional: disable on mobile for performance
- // if (window.innerWidth < 768) return;
-
-  let vantaEffect = CLOUDS({
+  const vantaEffect = CLOUDS({
     el: vantaRef.current,
     THREE,
     mouseControls: true,
     touchControls: true,
-    gyroControls: false,
+    gyroControls: true,
+
     minHeight: 200,
     minWidth: 200,
+
+    skyColor: 0x0f172a,
+    cloudColor: 0x6d5dfc,
+    cloudShadowColor: 0x1e293b,
+
+    speed: window.innerWidth < 768 ? 0.4 : 0.8,
   });
 
   return () => {
-    if (vantaEffect) {
-      vantaEffect.destroy();
-    }
+    vantaEffect?.destroy();
   };
 }, []);
   
