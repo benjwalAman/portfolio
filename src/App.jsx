@@ -433,9 +433,46 @@ return (
         </div>
       </Section>
 
-      <Section id="skills"> ... </Section>
-      <Section id="projects"> ... </Section>
-      <Section id="journey"> ... </Section>
+      <Section id="skills">
+          <div className="section-header">
+            <h2 className="section-title">Skills & Expertise</h2>
+            <p className="section-subtitle">A diverse skill set focused on machine learning, data science, and web development.</p>
+          </div>
+          <div className="skills-grid">
+            <div className="skills-column">
+              <h3>Core Technologies</h3>
+              <div className="radial-skills-container">
+                {data.skillsRadial.map(s => <RadialSkill key={s.label} {...s} />)}
+              </div>
+            </div>
+            <div className="skills-column">
+              <h3>Development Skills</h3>
+              <div className="bar-skills-container">
+                {data.skillsBars.map(s => <SkillBar key={s.label} {...s} />)}
+              </div>
+            </div>
+          </div>
+        </Section>
+      <Section id="projects">
+          <div className="section-header">
+            <h2 className="section-title">Featured Projects</h2>
+            <p className="section-subtitle">A collection of my work in machine learning and software development.</p>
+          </div>
+          <div className="projects-grid">
+            {data.projects.map(p => <ProjectCard key={p.title} {...p} />)}
+          </div>
+        </Section>
+       <Section id="journey">
+          <div className="section-header">
+            <h2 className="section-title">My Journey</h2>
+            <p className="section-subtitle">The timeline of my development as a programmer and ML enthusiast.</p>
+          </div>
+          <div className="timeline">
+            {data.journey.map((j, i) => (
+              <TimelineItem key={j.year} {...j} isLast={i === data.journey.length - 1} />
+            ))}
+          </div>
+        </Section>
 
       <ContactSection data={data} />
     </main>
