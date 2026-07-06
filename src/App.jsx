@@ -264,25 +264,13 @@ useEffect(() => {
     minHeight: 200,
     minWidth: 200,
 
-    // Dark background
-    skyColor: 0x0b1120,
-
-    // Realistic white clouds
-    cloudColor: 0xf8fafc,
-    cloudShadowColor: 0x64748b,
-
-    // Soft lighting
-    sunColor: 0xffffff,
-    sunlightColor: 0xffffff,
-
-    speed: 0.45
+    speed: 0.3
   });
 
   return () => {
     vantaEffect.destroy();
   };
 }, []);
-  
   const data = useMemo(() => ({
       name: "Aman Benjwal",
       taglinePhrases: ["Web Developer", "Graphic Designer", "AI Enthusiast"],
