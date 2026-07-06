@@ -264,20 +264,7 @@ useEffect(() => {
     minHeight: 200,
     minWidth: 200,
 
-    // Natural Cloud Colors
-    skyColor: 0x87ceeb,          // Light blue sky
-    cloudColor: 0xffffff,        // White clouds
-    cloudShadowColor: 0xb0c4de,  // Soft gray shadows
-
-    // Lighting
-    sunColor: 0xffdd99,
-    sunlightColor: 0xffffff,
-
-    // Animation
-    speed: window.innerWidth < 768 ? 0.3 : 0.6,
-
-    // Quality
-    texturePath: "./gallery/noise.png"
+    speed: window.innerWidth < 768 ? 0.4 : 0.8,
   });
 
   return () => {
