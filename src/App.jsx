@@ -250,28 +250,38 @@ const ContactSection = ({ data }) => {
 export default function App() {
   const vantaRef = useRef(null);
 
- useEffect(() => {
+useEffect(() => {
   if (!vantaRef.current) return;
 
   const vantaEffect = CLOUDS({
     el: vantaRef.current,
     THREE,
+
     mouseControls: true,
     touchControls: true,
-    gyroControls: true,
+    gyroControls: false,
 
     minHeight: 200,
     minWidth: 200,
 
-    skyColor: 0x0f172a,
-    cloudColor: 0x6d5dfc,
-    cloudShadowColor: 0x1e293b,
+    // Natural Cloud Colors
+    skyColor: 0x87ceeb,          // Light blue sky
+    cloudColor: 0xffffff,        // White clouds
+    cloudShadowColor: 0xb0c4de,  // Soft gray shadows
 
-    speed: window.innerWidth < 768 ? 0.4 : 0.8,
+    // Lighting
+    sunColor: 0xffdd99,
+    sunlightColor: 0xffffff,
+
+    // Animation
+    speed: window.innerWidth < 768 ? 0.3 : 0.6,
+
+    // Quality
+    texturePath: "./gallery/noise.png"
   });
 
   return () => {
-    vantaEffect?.destroy();
+    vantaEffect.destroy();
   };
 }, []);
   
