@@ -254,7 +254,7 @@ export default function App() {
   if (!vantaRef.current) return;
 
   // Optional: disable on mobile for performance
-  if (window.innerWidth < 768) return;
+ // if (window.innerWidth < 768) return;
 
   let vantaEffect = CLOUDS({
     el: vantaRef.current,
