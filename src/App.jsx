@@ -264,7 +264,7 @@ useEffect(() => {
     minHeight: 200,
     minWidth: 200,
 
-    speed: 0.3
+    speed: window.innerWidth < 768 ? 1.2 : 1.8,
   });
 
   return () => {
