@@ -349,12 +349,14 @@ useEffect(() => {
 return (
   <div className="app-container selection-bg relative">
     
-    {/* 🌊 Vanta Background (ONLY background, nothing else) */}
-    <div
-      id="vanta-bg"
-      ref={vantaRef}
-      className="vanta-bg"
-    />
+  {/* 🌊 Vanta Background */}
+    <div className="vanta-wrapper">
+      <div
+        id="vanta-bg"
+        ref={vantaRef}
+        className="vanta-bg"
+      />
+    </div>
 
     {/* 🌟 Main Content */}
     <nav className="nav">
