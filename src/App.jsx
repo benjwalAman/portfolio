@@ -264,7 +264,18 @@ useEffect(() => {
     minHeight: 200,
     minWidth: 200,
 
-    speed: window.innerWidth < 768 ? 0.4 : 0.8,
+    // Dark background
+    skyColor: 0x0b1120,
+
+    // Realistic white clouds
+    cloudColor: 0xf8fafc,
+    cloudShadowColor: 0x64748b,
+
+    // Soft lighting
+    sunColor: 0xffffff,
+    sunlightColor: 0xffffff,
+
+    speed: 0.45
   });
 
   return () => {
